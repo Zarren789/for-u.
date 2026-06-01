@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ede3d5;
+      color: #4a3b2f;
+      overflow-x: hidden;
+    }
+
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: #8b6f57;
+      border-radius: 10px;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 80px 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    h1, h2 {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 1px;
+    }
+
+    .hero {
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(237,227,213,0.78), rgba(219,200,181,0.72)),
+      url('images/bg.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: fadeDown 1.5s ease;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      line-height: 1.8;
+      animation: fadeUp 2s ease;
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 30px;
+      animation: bounce 2s infinite;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .timeline {
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 100%;
+      background: #8b6f57;
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 30px;
+      position: relative;
+      animation: fadeUp 1s ease;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-content {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .timeline-content h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: 0.4s;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .letter {
+      max-width: 800px;
+      text-align: center;
+      line-height: 2;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.4);
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .letter h2 {
+      font-size: 3rem;
+      margin-bottom: 25px;
+    }
+
+    .music-box {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .music-box button {
+      border: none;
+      background: #8b6f57;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .music-box button:hover {
+      opacity: 0.8;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #d8c1a8;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%,100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 10px;
+      }
+
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        left: 0;
+        text-align: left;
+      }
+
+      .letter {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="music-box">
+    <button onclick="toggleMusic()">Play Music</button>
+    <span>5SOS — Story Of Another Us</span>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="music/story-of-another-us.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="hero">
+    <h1>Our Story</h1>
+    <p>
+      Every moment with you became a memory I never want to lose.
+      This little place is made only for us — for every laugh, every conversation,
+      every silence, and every feeling that slowly became home.
+      <br><br>
+      From being a class leader and secretary back in middle school,
+      to becoming each other’s safe place for almost four years.
+      I never thought a simple coincidence could become my favorite story.
+    </p>
+
+    <div class="scroll">scroll slowly ↓</div>
+
+    <div style="margin-top:40px;font-size:0.95rem;opacity:0.8;letter-spacing:2px;">
+      atos & adek ♡
+    </div>
+  </section>
+
+  <section>
+    <h2 style="font-size: 3rem; margin-bottom: 60px;">How We Started</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>The First Meet</h3>
+          <p>
+            We met in middle school when I became the class leader,
+            and you became the secretary. At first it was just a normal school day,
+            but somehow life slowly turned that coincidence into something beautiful.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Late Night Talks</h3>
+          <p>
+            From random conversations to deep midnight talks,
+            every little moment with you always felt warm.
+            Somehow, talking to you always felt like home.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Our Favorite Day</h3>
+          <p>
+            One of my favorite memories will always be our school trip to Bali.
+            The beaches, the laughter, the little moments together —
+            everything about that trip became unforgettable because of you.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Still Writing Our Story</h3>
+          <p>
+            We may never have a perfect beginning date,
+            but somehow we’ve stayed together for almost four years.
+            And honestly, I still want more stories, more memories,
+            and more sunsets with you.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2 style="font-size: 3rem; margin-bottom: 20px;">Memories</h2>
+    <p>Replace gambar ini dengan foto kalian ya.</p>
+
+    <div class="gallery">
+      <img src="images/foto1.jpeg">
+      <img src="images/foto2.jpeg">
+      <img src="images/foto3.jpeg">
+      <img src="images/foto4.jpeg">
+      <img src="images/foto5.jpeg">
+      <img src="images/foto6.jpeg">
+      <img src="images/foto7.jpeg">
+      <img src="images/foto8.jpeg">
+      <img src="images/foto9.jpeg">
+      <img src="images/foto10.jpeg">
+      <img src="images/foto11.jpeg">
+      <img src="images/foto12.jpeg">
+    </div>
+  </section>
+
+  <section>
+    <h2 style="font-size: 3rem; margin-bottom: 30px;">Things I Love About You</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;width:100%;max-width:1000px;">
+
+      <div class="timeline-content">
+        <h3>Your Kind Heart</h3>
+        <p>
+          The way you always care about me,
+          even through the smallest things.
+        </p>
+      </div>
+
+      <div class="timeline-content">
+        <h3>Your Presence</h3>
+        <p>
+          Somehow every place feels calmer
+          when you're around.
+        </p>
+      </div>
+
+      <div class="timeline-content">
+        <h3>Our Random Talks</h3>
+        <p>
+          Even random conversations with you
+          became memories I never want to forget.
+        </p>
+      </div>
+
+      <div class="timeline-content">
+        <h3>The Way You Stay</h3>
+        <p>
+          Thank you for staying beside me
+          for almost four years.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div style="text-align:center; max-width:900px;">
+      <h2 style="font-size: 3rem; margin-bottom: 20px;">A Little Message</h2>
+
+      <button onclick="openLetter()" style="padding:15px 30px;border:none;background:#8b6f57;color:white;border-radius:50px;font-size:1rem;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.1);">
+        Open Letter For Adek
+      </button>
+
+      <div id="secretLetter" style="display:none;margin-top:40px;background:rgba(255,255,255,0.45);padding:40px;border-radius:25px;line-height:2;animation:fadeUp 1s ease;">
+        <p>
+          Adek,
+          <br><br>
+          maybe I don't always know how to express everything perfectly,
+          but thank you for becoming one of the best parts of my life.
+          <br><br>
+          From school uniforms, random jokes, late night talks,
+          until growing up together little by little.
+          <br><br>
+          If someday you ask me what my favorite love story is,
+          I'll probably answer:
+          <br><br>
+          “us.”
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="letter">
+      <h2>For Adek</h2>
+
+      <p>
+        Thank you for always being kind to me,
+        even on days when I’m hard to understand.
+        <br><br>
+        Maybe this website isn't perfect,
+        but every part of it was made with love.
+        Just like tulips and beaches that you love,
+        you also brought calmness into my life.
+        <br><br>
+        From SMP until now,
+        thank you for staying.
+        <br><br>
+        — Atos ♡
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin-bottom:10px;">and i'd choose you, every time.</p>
+    made with love by Atos ♡
+  </footer>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    let playing = false;
+
+    function toggleMusic() {
+      if (!playing) {
+        music.play();
+        playing = true;
+        document.querySelector('.music-box button').innerText = 'Pause Music';
+      } else {
+        music.pause();
+        playing = false;
+        document.querySelector('.music-box button').innerText = 'Play Music';
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.innerHTML = '🤎';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+      heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 1000);
+
+    function openLetter() {
+      const letter = document.getElementById('secretLetter');
+
+      if(letter.style.display === 'none') {
+        letter.style.display = 'block';
+      } else {
+        letter.style.display = 'none';
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100) {
+          section.style.opacity = '1';
+          section.style.transform = 'translateY(0px)';
+        }
+      })
+    });
+  </script>
+
+</body>
+</html>
